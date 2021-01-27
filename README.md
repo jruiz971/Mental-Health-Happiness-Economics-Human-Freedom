@@ -20,3 +20,14 @@ GNU General Public License v3.0
 * Matplotlib
 * Seaborn
 * Streamlit
+## Installation:
+- Clone the repository:
+  > git clone https://github.com/jruiz971/Mental-Health-Happiness-Economics-Human-Freedom.git
+
+## Run:
+  - Streamlit
+    -- cd streamlit
+    -- stramlit run Proyecto.py
+  - Notebooks
+  -- cd ipynb
+  -- open the notebook you want
