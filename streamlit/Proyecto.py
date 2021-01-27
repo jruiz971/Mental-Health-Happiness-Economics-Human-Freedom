@@ -165,6 +165,6 @@ def show_map(df_,coords):
     g = sns.pairplot(datos2,hue='Country')
     st.pyplot(g)
 
-#first(WHR)
-#clusters(WHR)
+first(WHR)
+clusters(WHR)
 show_map(WHR, posicion)
