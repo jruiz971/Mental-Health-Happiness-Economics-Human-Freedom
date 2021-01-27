@@ -40,7 +40,7 @@ st.title('Exploracion de datos sobre reportes de la felicidad en el mundo.')
 st.write('Datos obtenidos de Kaggle de World Happiness Report 2015-2019')
 st.write(WHR)
 
-st.write('Aquí tenemos un primer análisis exploratorio de los datos')
+st.subheader('Aquí tenemos un primer análisis exploratorio de los datos')
 
 def hexbin(x, y, color, **kwargs):
     cmap = sns.light_palette(color, as_cmap=True)
@@ -63,23 +63,25 @@ def plot_dendrogram(model, **kwargs):
     dendrogram(linkage_matrix, **kwargs)
 
 def first(WHR):
+
     g = sns.pairplot(WHR)
     g.map_lower(hexbin);
     g.map_upper(sns.kdeplot)
     st.pyplot(g)
 
 def clusters(WHR):
+    st.write('Uso de clustering k means con referencia de el coeficiente elbow')
     st.subheader('Healty - Corruption')
+    plt.style.use('classic')
     fig, ax = plt.subplots()
     kmeans = KMeans()
     visualizer = KElbowVisualizer(kmeans, k=10)
     HC = ['Healthy','Corruption']
     visualizer.fit(WHR[HC])
-    st.pyplot(plt)
+    st.pyplot(fig)
 
     kmeans = KMeans(n_clusters=4).fit(WHR[HC])
     labels = kmeans.predict(WHR[HC])
-    plt.style.use('classic')
     fig, ax = plt.subplots()
     ax.set_xlabel('Healthy')
     ax.set_ylabel('Corruption')
@@ -96,7 +98,6 @@ def clusters(WHR):
 
     kmeans = KMeans(n_clusters=3).fit(WHR[HC])
     labels = kmeans.predict(WHR[HG])
-    plt.style.use('classic')
     fig, ax = plt.subplots()
     ax.set_xlabel('Healthy')
     ax.set_ylabel('GDP per Capita')
@@ -104,6 +105,7 @@ def clusters(WHR):
     st.pyplot(fig)
 
     st.subheader('GDP per Capita - Corruption')
+    st.write('Uso de clustering jerarquico con distancia ward')
     model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
     CG = ['GDP per Capita','Corruption']
     model = model.fit(WHR[CG])
@@ -113,7 +115,6 @@ def clusters(WHR):
 
     clustering = AgglomerativeClustering(n_clusters=4).fit(WHR[CG])
     labels = clustering.labels_
-    plt.style.use('classic')
     fig, ax = plt.subplots()
     ax.set_xlabel('GDP per Capita')
     ax.set_ylabel('Corruption')
@@ -123,6 +124,8 @@ def clusters(WHR):
 posicion = pd.read_csv('Posicion_pais.csv', index_col = 'Country/Region')
 
 def show_map(df_,coords):
+
+    st.subheader('Exploracion de los datos por paises')
     left_col , right_col = st.beta_columns(2)
 
     with left_col:
@@ -162,7 +165,8 @@ def show_map(df_,coords):
     print(datos2.index)
     datos2 = datos2[datos2.index.isin(country)]
     datos2 = datos2.reset_index()
-    g = sns.pairplot(datos2,hue='Country')
+    g = sns.pairplot(datos2,hue='Country', diag_kind="histo")
+
     st.pyplot(g)
 
 first(WHR)
