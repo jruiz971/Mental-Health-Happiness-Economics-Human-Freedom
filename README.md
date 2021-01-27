@@ -11,6 +11,7 @@ GNU General Public License v3.0
 > In this project we use Exploratory Data Analysis techniques, hierarchical and non-hierarchical clustering (K-means), as well as Streamlit visualization in order to find characteristics that allow us to analyze the factors that make a country's population happy.
 ## Requirements:
 * Python3
+* Jupyter Notebook
 * numpy 
 * pandas
 * sklearn
