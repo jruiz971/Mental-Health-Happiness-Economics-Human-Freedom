@@ -26,8 +26,8 @@ GNU General Public License v3.0
 
 ## Run:
   - Streamlit
-    -- cd streamlit
-    -- stramlit run Proyecto.py
+    > cd streamlit
+    > stramlit run Proyecto.py
   - Notebooks
-  -- cd ipynb
-  -- open the notebook you want
+    >cd ipynb
+    >open the notebook you want
